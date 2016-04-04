@@ -8,13 +8,18 @@
 </form>
 
 <?php
+
+require_once 'classes/Validator.php';
+
+$validator = new Validator();
+
 if (isset($_POST['submit'])) {
     $personal_id = $_POST['personal_id'];
-    if (control_sum($personal_id) &&
-        month_val($personal_id) &&
-        day_val($personal_id) &&
-        num_count($personal_id) &&
-        check_if_num($personal_id)
+    if ($validator->control_sum($personal_id) &&
+        $validator->month_val($personal_id) &&
+        $validator->day_val($personal_id) &&
+        $validator->num_count($personal_id) &&
+        $validator->check_if_num($personal_id)
     ) {
         echo "Isikukood valideeritud!";
     } else {
